@@ -330,6 +330,18 @@ This endpoint is utilized by the companion Android Application to push incoming 
 3. Log in using your OmniPay Merchant email and password, or use your `SMS Sync Key` from the dashboard.
 4. The app will run in the background. Whenever a payment SMS arrives, it immediately forwards it to your OmniPay server.
 
+**🍎 iOS / iPhone Support via Apple Shortcuts (World First!):**
+Other payment gateway aggregators and licensors do not yet support iPhone SMS reading. OmniPay is proud to be the **FIRST** platform to implement an iOS integration using Apple's native Shortcuts app! No jailbreak required.
+
+**Setup Instructions:**
+1. Open the "Shortcuts" app on your iPhone and go to the **Automation** tab.
+2. Create a new Personal Automation: `When I get a message containing "bKash" or "Nagad"`.
+3. Set the automation action to **"Get contents of URL"**.
+4. Set the URL to `https://your-domain.com/api/v1/sync-sms`.
+5. Change the method to `POST`. Add the Header `X-API-KEY` with your `SMS Sync Key`.
+6. In the Request Body (JSON), add `msg_data` mapped to the "Shortcut Input" (the message text), and `sender` set to "bKash".
+7. Turn off "Ask Before Running" and "Notify When Run" (available in iOS 17+). Your iPhone will now silently and instantly forward payment SMS messages to OmniPay!
+
 **Endpoint details (for custom app developers):**
 **Endpoint:** `POST /api/v1/sync-sms`
 
