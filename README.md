@@ -320,6 +320,17 @@ Check the current status of an invoice.
 
 This endpoint is utilized by the companion Android Application to push incoming MFS SMS messages to the server pool.
 
+**📱 Android App Download & Setup:**
+- **Pre-built APK:** Download the ready-to-use app: [omnipay.apk](omnipay.apk)
+- **Source Code:** Download the Android Studio project: [Omnipay_androidstudio_source_code.zip](Omnipay_androidstudio_source_code.zip)
+
+**Setup Instructions:**
+1. Install `omnipay.apk` on an Android phone that receives your MFS (bKash/Nagad) SMS notifications.
+2. Open the app and grant "SMS Read" permissions.
+3. Log in using your OmniPay Merchant email and password, or use your `SMS Sync Key` from the dashboard.
+4. The app will run in the background. Whenever a payment SMS arrives, it immediately forwards it to your OmniPay server.
+
+**Endpoint details (for custom app developers):**
 **Endpoint:** `POST /api/v1/sync-sms`
 
 **Request Payload:**
