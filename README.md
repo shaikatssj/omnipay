@@ -20,8 +20,8 @@
   <a href="#-quick-start"><img src="https://img.shields.io/badge/Laravel-12.x-FF2D20?style=for-the-badge&logo=laravel&logoColor=white" alt="Laravel 12"></a>
   <a href="#-quick-start"><img src="https://img.shields.io/badge/PHP-8.2+-777BB4?style=for-the-badge&logo=php&logoColor=white" alt="PHP 8.2+"></a>
   <a href="#-architecture"><img src="https://img.shields.io/badge/Database-MySQL%20%7C%20MariaDB-4479A1?style=for-the-badge&logo=mysql&logoColor=white" alt="Database"></a>
+  <a href="#-ios--iphone-support-via-apple-shortcuts-world-first"><img src="https://img.shields.io/badge/iOS_14+-Supported-000000?style=for-the-badge&logo=apple&logoColor=white" alt="iOS Supported"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-22c55e?style=for-the-badge" alt="MIT License"></a>
-  <a href="#-contributing"><img src="https://img.shields.io/badge/PRs-Welcome-6366f1?style=for-the-badge" alt="PRs Welcome"></a>
 </p>
 
 <p align="center">
@@ -45,6 +45,7 @@ Traditional payment gateways lock merchants into rigid ecosystems. They charge e
 OmniPay connects your existing personal accounts (bKash, Nagad, Binance, Metamask) and bridges them into an automated checkout pipeline. By reading confirmation SMS messages from your phone and tracking on-chain blockchain data, OmniPay auto-verifies transactions. 
 
 ### The OmniPay Advantage:
+* **World-First iOS Support:** The ONLY aggregator platform allowing seamless, background SMS payment forwarding from an iPhone (no jailbreak required).
 * **Zero Platform Fees:** Since the payment flows directly to your personal wallets or MFS accounts, there is no intermediary charging a percentage.
 * **No Vendor Lock-in:** You deploy the OmniPay server on your own infrastructure (VPS or shared hosting). Your data, invoices, and customer details remain yours.
 * **Unified Checkout:** Provide your customers a beautiful, single-page checkout experience that supports local mobile banking and global cryptocurrencies simultaneously.
