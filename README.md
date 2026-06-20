@@ -82,6 +82,48 @@ OmniPay ships with **10 Production-Ready Drivers** out of the box.
 * **HMAC-SHA256 Webhooks:** Secure server-to-server callbacks ensure that your frontend/billing system (like WHMCS) only processes legitimate payment confirmations.
 * **Sandbox Mode:** Test transactions locally without real money.
 
+## 📸 Screenshots & Platform Overview
+
+### Core Gateways Management
+Enable and disable multiple payment gateways globally, such as bKash, Binance, and Web3 wallets, and easily upload custom gateway logos.
+![Core Gateways](<Screenshots 1/1 (1).png>)
+
+### Dashboard Overview
+View high-level metrics like processed volume, success rate, average ticket size, and revenue charts. Connect your Android SMS Sync App directly via the provided QR code.
+![Dashboard Top](<Screenshots 1/1 (2).png>)
+![Dashboard Bottom](<Screenshots 1/1 (3).png>)
+
+### Storefront Management
+Manage multiple merchant stores, view active profiles, and register new API-isolated storefronts with ease.
+![My Stores](<Screenshots 1/1 (4).png>)
+
+### Invoice Generation
+Create custom invoices and direct payment links straight from the admin panel.
+![Create Invoice](<Screenshots 1/1 (5).png>)
+
+### Invoice Logs
+Track, filter, and manage all invoice transactions including Paid, Pending, Refunded, and Expired statuses.
+![Invoices](<Screenshots 1/1 (6).png>)
+
+### Customer Checkout Page
+A clean, modern payment request page providing customers with all enabled local and global payment options.
+![Checkout Page](<Screenshots 1/1 (7).png>)
+
+### API Request Logs
+Monitor API traffic and debug requests with detailed logs including endpoint, method, status, duration, and IP address.
+![API Logs](<Screenshots 1/1 (8).png>)
+
+### Security & Global Settings
+Configure critical system controls like Multi-Merchant access, Dynamic Math Captcha, and global SMTP email settings.
+![Security Settings](<Screenshots 1/1 (9).png>)
+
+### Mobile App - SMS Sync Integration
+Connect and monitor the Android SMS Sync app to auto-verify mobile financial service transactions silently in the background.
+<p align="center">
+  <img src="Screenshots 1/WhatsApp Image 2026-06-20 at 2.18.11 PM.jpeg" width="300" alt="Mobile App Login">
+  <img src="Screenshots 1/WhatsApp Imagje 2026-06-20 at 2.18.11 PM.jpeg" width="300" alt="Mobile App Dashboard">
+</p>
+
 ---
 
 ## 🏗️ System Architecture
