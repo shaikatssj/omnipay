@@ -10,6 +10,13 @@
 </p>
 
 <p align="center">
+  <em>Powered by</em><br>
+  <a href="https://hostinoz.com" target="_blank">
+    <img src="public/hostinoz.png" alt="Hostinoz" width="200">
+  </a>
+</p>
+
+<p align="center">
   <a href="#-quick-start"><img src="https://img.shields.io/badge/Laravel-12.x-FF2D20?style=for-the-badge&logo=laravel&logoColor=white" alt="Laravel 12"></a>
   <a href="#-quick-start"><img src="https://img.shields.io/badge/PHP-8.2+-777BB4?style=for-the-badge&logo=php&logoColor=white" alt="PHP 8.2+"></a>
   <a href="#-architecture"><img src="https://img.shields.io/badge/Database-MySQL%20%7C%20MariaDB-4479A1?style=for-the-badge&logo=mysql&logoColor=white" alt="Database"></a>
@@ -480,9 +487,5 @@ OmniPay is open-source software licensed under the [MIT License](LICENSE).
 This means you are absolutely free to rebrand, resell, modify, and distribute OmniPay in your commercial projects without restriction or attribution requirements.
 
 <p align="center">
-  <sub>Engineered for resilience. Built for freedom.</sub><br><br>
-  <em>Powered by</em><br>
-  <a href="https://hostinoz.com" target="_blank">
-    <img src="public/hostinoz.png" alt="Hostinoz" width="200">
-  </a>
+  <sub>Engineered for resilience. Built for freedom.</sub>
 </p>
