@@ -10,6 +10,15 @@
 </p>
 
 <p align="center">
+  <a href="#-installation--deployment">
+    <img src="https://img.shields.io/badge/🚀_Get_Started-000000?style=for-the-badge&logo=rocket&logoColor=white" alt="Get Started">
+  </a>
+  <a href="https://github.com/shaikatssj/omnipay">
+    <img src="https://img.shields.io/badge/⭐_Star_Project-FFD700?style=for-the-badge&logo=github&logoColor=black" alt="Star Project">
+  </a>
+</p>
+
+<p align="center">
   <em>Powered by</em><br>
   <a href="https://hostinoz.com" target="_blank">
     <img src="public/hostinoz.png" alt="Hostinoz" width="200">
