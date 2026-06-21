@@ -14,4 +14,6 @@ All notable changes to this project will be documented in this file.
   - Store owners can inject custom CSS directly into the checkout layout to override styles completely.
 
 ### Fixed
+- Added the missing "Payment Links" navigation item to the dashboard sidebar.
+- Completely overhauled the CSS and layout of the Payment Links dashboard page to match the application's custom design system.
 - Fixed fatal redeclaration error of `editStore` in `DashboardController` by merging update logic into the existing `updateStore` method.
