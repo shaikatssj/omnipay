@@ -170,20 +170,21 @@ class InstallController extends Controller
 
             // 2. Clear config caches to ensure new env database connection is loaded
             try {
-                Artisan::call('config:clear');
+                Artisan::call('config:clear', ['--quiet' => true]);
             } catch (Exception $e) {
                 // Ignore config clear failure
             }
 
             try {
                 config(['cache.default' => 'file']);
-                Artisan::call('cache:clear');
+                Artisan::call('cache:clear', ['--quiet' => true]);
             } catch (Exception $e) {
                 // Ignore cache clear failure
             }
 
             // 3. Re-configure database connection on runtime to ensure subsequent queries use the correct DB
             config([
+                'database.default' => 'mysql',
                 'database.connections.mysql.host' => $dbConfig['host'],
                 'database.connections.mysql.port' => $dbConfig['port'],
                 'database.connections.mysql.database' => $dbConfig['database'],
@@ -194,10 +195,10 @@ class InstallController extends Controller
             DB::reconnect('mysql');
 
             // 4. Run database migrations
-            Artisan::call('migrate:fresh', ['--force' => true]);
+            Artisan::call('migrate:fresh', ['--force' => true, '--quiet' => true]);
 
             // 5. Run database seeds
-            Artisan::call('db:seed', ['--force' => true]);
+            Artisan::call('db:seed', ['--force' => true, '--quiet' => true]);
 
             // 6. Update or Create Admin User
             $adminUser = \App\Models\User::where('role', 'admin')->first();
