@@ -370,6 +370,11 @@
                     <i class="fa-solid fa-receipt"></i> Invoices
                 </a>
             </li>
+            <li class="menu-item @if(Route::is('payment-links.*')) active @endif">
+                <a href="{{ route('payment-links.index') }}">
+                    <i class="fa-solid fa-link"></i> Payment Links
+                </a>
+            </li>
             <li class="menu-item @if(Route::is('dashboard.qr')) active @endif">
                 <a href="{{ route('dashboard.qr') }}">
                     <i class="fa-solid fa-qrcode"></i> QR Manager
