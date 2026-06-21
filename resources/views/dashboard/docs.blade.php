@@ -992,34 +992,52 @@ if (hash_equals($expectedSign, $request->header('X-OMNIPAY-SIGNATURE'))) {
                 </div>
 
                 <!-- Card B: iOS Shortcuts -->
-                <div class="integration-card">
+                <div class="integration-card" style="grid-column: 1 / -1;">
                     <h3>
                         <div class="icon-wrapper">
                             <i class="fa-solid fa-wand-magic-sparkles"></i>
                         </div>
-                        Apple iOS Shortcuts App
+                        Apple iOS Shortcuts - Auto SMS Sync (Easy Setup)
                     </h3>
                     <p>
-                        Perform merchant actions directly from your iPhone widgets or Siri shortcuts.
+                        Turn your personal iPhone into an automatic payment gateway! Just follow these simple steps to make your iPhone silently forward incoming payment SMS directly to your OmniPay server.
                     </p>
 
-                    <strong style="color: var(--primary); font-size: 0.95rem;">Shortcut workflows:</strong>
                     <ul class="step-list">
                         <li>
                             <span class="step-badge">1</span>
-                            <strong>Create Link:</strong> Ask for **Amount** input, trigger <code>POST /api/v1/payment</code>, extract <code>payment_link</code>, and open it.
+                            <div>
+                                <strong style="display:block; margin-bottom: 5px;">Tell your iPhone to listen for Payment SMS</strong>
+                                Open the <b>Shortcuts</b> app > Tap <b>Automation</b> > Tap <b>+</b> > Choose <b>Message</b>.<br>
+                                In "Message Contains", type your banking name (e.g., <code>bKash</code>). Select <b>Run Immediately</b>, then tap Next and choose <b>New Blank Automation</b>.
+                            </div>
                         </li>
                         <li>
                             <span class="step-badge">2</span>
-                            <strong>Sync Clipboard:</strong> Fetch copied SMS from clipboard, choose sender, and POST to <code>/api/v1/sync-sms</code>.
+                            <div>
+                                <strong style="display:block; margin-bottom: 5px; margin-top: 10px;">Tell your iPhone where to send the SMS</strong>
+                                Tap <b>Add Action</b> > Search for <code>URL</code> and select it. Type in your sync link: <code>https://your-domain.com/api/v1/sync-sms</code>.<br>
+                                Search again for <code>Get Contents of URL</code> and add it right below.
+                            </div>
                         </li>
                         <li>
                             <span class="step-badge">3</span>
-                            <strong>Check Invoices:</strong> Call <code>GET /api/v1/invoices?status=pending</code> and print a list of pending checkout requests.
+                            <div>
+                                <strong style="display:block; margin-bottom: 5px; margin-top: 10px;">Add your Secret Key and Details</strong>
+                                Tap the arrow <code>></code> on "Get Contents of URL". Change Method to <b>POST</b>.<br>
+                                • Under <b>Headers</b>, add Key: <code>X-API-KEY</code> and Text: <i>[Paste your SMS Sync Key]</i>.<br>
+                                • Under <b>Request Body</b> (JSON), add a text field Key: <code>sender</code> and Text: <code>bKash</code>.<br>
+                                • Add another text field Key: <code>msg_data</code> and select <b>Shortcut Input</b> from the keyboard menu.
+                            </div>
                         </li>
                         <li>
                             <span class="step-badge">4</span>
-                            <strong>Native Notifications:</strong> After Sync, use <strong>Get Dictionary from Input</strong> on the URL response, extract the <code>message</code> key, and trigger <strong>Show Notification</strong> for gorgeous native banners.
+                            <div>
+                                <strong style="display:block; margin-bottom: 5px; margin-top: 10px;">Show a Beautiful Success Notification (Optional)</strong>
+                                Search for <b>Get Dictionary from Input</b> and add it (set to Contents of URL).<br>
+                                Search for <b>Get Value from Dictionary</b> (set key to <code>message</code>).<br>
+                                Search for <b>Show Notification</b> and choose the Dictionary Value output. Finally, tap <b>Done</b>!
+                            </div>
                         </li>
                     </ul>
                 </div>

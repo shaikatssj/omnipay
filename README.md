@@ -393,45 +393,41 @@ This endpoint is utilized by the companion Android Application to push incoming 
 
 #### 🛠️ Step-by-Step Setup Guide
 
-**Step 1: Create the Automation Trigger**
+**Step 1: Tell your iPhone to listen for Payment SMS**
 1. Open the **Shortcuts** app on your iPhone.
-2. Tap on the **Automation** tab at the bottom.
-3. Tap the **+** (plus) icon to create a new Personal Automation.
-4. Scroll down and select **Message**.
-5. Set the "Message Contains" field to your gateway keyword (e.g., `bKash` or `Nagad`).
-6. Select **Run Immediately** (this prevents the phone from asking you for permission every time).
+2. Tap the **Automation** tab at the bottom.
+3. Tap the **+** (plus) icon at the top right to create a new automation.
+4. Scroll down and choose **Message**.
+5. In the "Message Contains" box, type your mobile banking name (like `bKash` or `Nagad`).
+6. Choose **Run Immediately** so it works automatically in the background.
+7. Tap **Next**, then choose **New Blank Automation**.
 
-**Step 2: Configure the Webhook Action**
-1. Tap **Next**, then tap **New Blank Automation**.
-2. Tap **Add Action** and search for `URL`. Select the **URL** action.
-3. Enter your OmniPay sync endpoint:  
-   👉 `https://your-domain.com/api/v1/sync-sms`
-4. Search for another action: `Get Contents of URL` and add it below the URL block.
+**Step 2: Tell your iPhone where to send the SMS**
+1. Tap **Add Action**, search for the word `URL`, and select it.
+2. Type in your website's sync link: `https://your-domain.com/api/v1/sync-sms`
+3. Tap the search bar at the bottom again, search for `Get Contents of URL`, and add it.
 
-**Step 3: Map the API Data**
-1. Expand the "Get Contents of URL" block (tap the little arrow `>`).
+**Step 3: Add your Secret Key and Details**
+1. Tap the little arrow `>` next to "Get Contents of URL" to open its settings.
 2. Change the **Method** from `GET` to `POST`.
-3. Tap **Headers** -> Add new header:
-   * **Key:** `X-API-KEY`
-   * **Text:** Paste your `SMS Sync Key` here.
-4. Tap **Request Body** (JSON) -> Add new field (Text):
-   * **Key:** `sender`
-   * **Text:** `bKash` (or Nagad, Rocket, etc.)
-5. Add another field (Text):
-   * **Key:** `msg_data`
-   * **Text:** Tap here, then select **Shortcut Input** from the variable ribbon above the keyboard.
+3. Under **Headers**, add a new header:
+   - On the left side (Key), type: `X-API-KEY`
+   - On the right side (Text), paste your `SMS Sync Key` (Get this from your OmniPay Dashboard).
+4. Under **Request Body**, make sure it says **JSON**, then add two text fields:
+   - First field Key: `sender` | Text: `bKash` (or whatever your service is)
+   - Second field Key: `msg_data` | Text: Tap this box, and choose **Shortcut Input** from the keyboard menu.
 
-**Step 4: Receive Native Upload Notifications (Optional but recommended)**
-Add follow-up actions to show a gorgeous native banner notification on your iPhone whenever a payment is synced:
-1. Search and drag **Get Dictionary from Input**, set it to accept the **Contents of URL** response.
-2. Search and drag **Get Value from Dictionary**, set the key to `message`.
-3. Search and drag **Show Notification**, click the notification text field and select the dictionary value output.
+**Step 4: Get a Beautiful Native Notification (Optional but recommended!)**
+*Want your iPhone to pop up a success banner when a payment is synced?*
+1. Search for **Get Dictionary from Input** and add it. Set it to accept the **Contents of URL** response.
+2. Search for **Get Value from Dictionary** and add it. Set the key to `message`.
+3. Search for **Show Notification** and add it. Tap the text box and choose the Dictionary Value output. 
 
-**Step 5: Finalize and Save**
+**Step 5: Save your Shortcut!**
 1. Tap **Done** in the top right corner.
-2. **Important for iOS 17+:** Ensure "Notify When Run" is toggled **OFF**.
+2. **Important:** If you are on iOS 17 or newer, make sure "Notify When Run" is turned **OFF**.
 
-🎉 *That's it! Your iPhone will now sync incoming transaction messages to the server automatically.*
+🎉 *That's it! Your iPhone will now silently forward payment messages to your server and pop up a beautiful banner to let you know!*
 
 **Endpoint details (for custom app developers):**
 **Endpoint:** `POST /api/v1/sync-sms`
