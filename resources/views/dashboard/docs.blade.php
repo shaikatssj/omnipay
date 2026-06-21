@@ -1017,6 +1017,10 @@ if (hash_equals($expectedSign, $request->header('X-OMNIPAY-SIGNATURE'))) {
                             <span class="step-badge">3</span>
                             <strong>Check Invoices:</strong> Call <code>GET /api/v1/invoices?status=pending</code> and print a list of pending checkout requests.
                         </li>
+                        <li>
+                            <span class="step-badge">4</span>
+                            <strong>Native Notifications:</strong> After Sync, use <strong>Get Dictionary from Input</strong> on the URL response, extract the <code>message</code> key, and trigger <strong>Show Notification</strong> for gorgeous native banners.
+                        </li>
                     </ul>
                 </div>
             </div>
