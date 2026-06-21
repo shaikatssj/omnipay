@@ -421,11 +421,17 @@ This endpoint is utilized by the companion Android Application to push incoming 
    * **Key:** `msg_data`
    * **Text:** Tap here, then select **Shortcut Input** from the variable ribbon above the keyboard.
 
-**Step 4: Finalize and Save**
+**Step 4: Receive Native Upload Notifications (Optional but recommended)**
+Add follow-up actions to show a gorgeous native banner notification on your iPhone whenever a payment is synced:
+1. Search and drag **Get Dictionary from Input**, set it to accept the **Contents of URL** response.
+2. Search and drag **Get Value from Dictionary**, set the key to `message`.
+3. Search and drag **Show Notification**, click the notification text field and select the dictionary value output.
+
+**Step 5: Finalize and Save**
 1. Tap **Done** in the top right corner.
 2. **Important for iOS 17+:** Ensure "Notify When Run" is toggled **OFF**.
 
-🎉 *That's it! Your iPhone will now silently and instantly forward incoming payment SMS messages directly to OmniPay.*
+🎉 *That's it! Your iPhone will now sync incoming transaction messages to the server automatically.*
 
 **Endpoint details (for custom app developers):**
 **Endpoint:** `POST /api/v1/sync-sms`

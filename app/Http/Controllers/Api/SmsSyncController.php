@@ -110,7 +110,7 @@ class SmsSyncController extends Controller
 
         return response()->json([
             'status' => 'success',
-            'message' => 'SMS data synced successfully',
+            'message' => "SMS Uploaded: TrxID {$synced->trxid}, Amount {$synced->amount}, From {$synced->sender}",
             'amount' => $synced->amount,
             'trxid' => $synced->trxid,
             'sender' => $synced->sender,
