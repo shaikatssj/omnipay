@@ -68,6 +68,27 @@
             <div class="help-text">Security check: requests to initialize payments will only be accepted from this origin/website.</div>
         </div>
 
+        <h3 style="margin-top: 30px; margin-bottom: 15px; font-size: 1.1rem;">White-Label Customization</h3>
+        <div class="help-text" style="margin-bottom: 15px;">Customize how the checkout page looks for this specific store.</div>
+
+        <div class="form-group">
+            <label for="theme_color">Theme Primary Color</label>
+            <input type="color" name="theme_color" id="theme_color" class="form-control" style="height: 50px; padding: 5px;" value="{{ old('theme_color', $store->theme_color ?? '#6366f1') }}">
+            <div class="help-text">Select the primary color for buttons and accents on the checkout page.</div>
+        </div>
+
+        <div class="form-group">
+            <label for="custom_css">Custom CSS</label>
+            <textarea name="custom_css" id="custom_css" class="form-control" rows="4" placeholder="body { background: #000; }">{{ old('custom_css', $store->custom_css) }}</textarea>
+            <div class="help-text">Inject raw CSS into the checkout page header to heavily modify the appearance.</div>
+        </div>
+
+        <div class="form-group" style="display: flex; align-items: center; gap: 10px;">
+            <input type="hidden" name="hide_branding" value="0">
+            <input type="checkbox" name="hide_branding" id="hide_branding" value="1" {{ old('hide_branding', $store->hide_branding) ? 'checked' : '' }} style="width: 18px; height: 18px;">
+            <label for="hide_branding" style="margin-bottom: 0;">Hide "Powered by OmniPay" Footer</label>
+        </div>
+
         <div style="display: flex; gap: 15px; margin-top: 30px;">
             <button type="submit" class="btn btn-primary">
                 <i class="fa-solid fa-floppy-disk"></i> Update Store Details

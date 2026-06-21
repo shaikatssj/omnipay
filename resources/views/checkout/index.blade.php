@@ -855,9 +855,11 @@
             </div>
         </div>
         
+        @if(!isset($invoice->store) || !$invoice->store->hide_branding)
         <div class="footer">
             <i class="fa-solid fa-shield-lock" style="margin-right: 5px;"></i> Secured by OmniPay Gateway System
         </div>
+        @endif
     </div>
 </div>
 

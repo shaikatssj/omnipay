@@ -12,6 +12,9 @@ class Store extends Model
         'domain',
         'api_key',
         'is_active',
+        'theme_color',
+        'custom_css',
+        'hide_branding',
     ];
 
     protected $casts = [
@@ -31,5 +34,10 @@ class Store extends Model
     public function invoices()
     {
         return $this->hasMany(Invoice::class);
+    }
+
+    public function paymentLinks()
+    {
+        return $this->hasMany(PaymentLink::class);
     }
 }

@@ -168,6 +168,8 @@ class DashboardController extends Controller
         return redirect()->route('dashboard')->with('success', 'Store created successfully.');
     }
 
+
+
     /**
      * Edit configs for a store.
      */
@@ -899,11 +901,17 @@ class DashboardController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'domain' => 'nullable|string|max:255',
+            'theme_color' => 'nullable|string|max:20',
+            'custom_css' => 'nullable|string|max:5000',
+            'hide_branding' => 'nullable|boolean',
         ]);
 
         $store->update([
             'name' => $request->name,
             'domain' => $request->domain,
+            'theme_color' => $request->theme_color,
+            'custom_css' => $request->custom_css,
+            'hide_branding' => $request->boolean('hide_branding', false),
         ]);
 
         ActivityLog::log('store_update', "Updated store details for '{$store->name}'", $store->id);

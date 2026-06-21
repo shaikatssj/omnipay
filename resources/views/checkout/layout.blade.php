@@ -212,6 +212,25 @@
         }
     </style>
     @yield('styles')
+    @if(isset($invoice) && isset($invoice->store))
+        @if($invoice->store->theme_color)
+            <style>
+                :root {
+                    --primary: {{ $invoice->store->theme_color }};
+                    --primary-dark: {{ $invoice->store->theme_color }}; /* simplified for theme injection */
+                }
+                [data-theme="dark"] {
+                    --primary: {{ $invoice->store->theme_color }};
+                    --primary-dark: {{ $invoice->store->theme_color }};
+                }
+            </style>
+        @endif
+        @if($invoice->store->custom_css)
+            <style>
+                {!! $invoice->store->custom_css !!}
+            </style>
+        @endif
+    @endif
 </head>
 <body>
     <button class="theme-toggle" id="themeToggleBtn" aria-label="Toggle Theme">

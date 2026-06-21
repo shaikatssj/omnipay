@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\PaymentLinkController;
+use App\Http\Controllers\PublicPaymentLinkController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +26,10 @@ Route::prefix('checkout')->group(function () {
     Route::get('/{invoice}/success', [CheckoutController::class, 'success'])->name('checkout.success');
     Route::post('/{invoice}/simulate-sandbox', [CheckoutController::class, 'simulateSandboxPayment'])->name('checkout.simulate-sandbox');
 });
+
+// Public payment link routes
+Route::get('/pay/{identifier}', [PublicPaymentLinkController::class, 'show'])->name('payment-links.public.show');
+Route::post('/pay/{identifier}', [PublicPaymentLinkController::class, 'process'])->name('payment-links.public.process');
 
 // 3. User Authentication routes
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
@@ -46,6 +52,9 @@ Route::middleware(['auth', \App\Http\Middleware\CheckMerchantSystem::class])->pr
     Route::post('/stores/{store}/toggle-status', [DashboardController::class, 'toggleStoreStatus'])->name('stores.toggle-status');
     Route::post('/stores/{store}/regenerate-key', [DashboardController::class, 'regenerateStoreKey'])->name('stores.regenerate-key');
     Route::delete('/stores/{store}', [DashboardController::class, 'deleteStore'])->name('stores.delete');
+    
+    // Payment Links
+    Route::resource('payment-links', PaymentLinkController::class)->except(['show', 'edit', 'update']);
     
     // Payment config settings per store
     Route::get('/stores/{store}/configs', [DashboardController::class, 'editConfigs'])->name('stores.configs.edit');
