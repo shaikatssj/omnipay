@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-## [Unreleased] - 2026-06-22
+## [1.0.0] - 2026-06-22
 
 ### Added
 - **Store White-Labeling (Checkout Layout)**:
