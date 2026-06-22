@@ -55,9 +55,10 @@ OmniPay connects your existing personal accounts (bKash, Nagad, Binance, Metamas
 
 ### The OmniPay Advantage:
 * **World-First iOS Support:** The ONLY aggregator platform allowing seamless, background SMS payment forwarding from an iPhone (no jailbreak required).
+* **Dhru Fusion Integration:** Built-in billing and automation module for telecom, IMEI, and file unlocking portals running on Dhru Fusion.
 * **Zero Platform Fees:** Since the payment flows directly to your personal wallets or MFS accounts, there is no intermediary charging a percentage.
 * **No Vendor Lock-in:** You deploy the OmniPay server on your own infrastructure (VPS or shared hosting). Your data, invoices, and customer details remain yours.
-* **Unified Checkout:** Provide your customers a beautiful, single-page checkout experience that supports local mobile banking and global cryptocurrencies simultaneously.
+* **Unified Checkout:** Provide your customers a beautiful, single-page experience that supports local mobile banking and global cryptocurrencies simultaneously.
 * **Extensible & Open-Source:** Need a new local payment method? Write a simple PHP class implementing the `PaymentDriverInterface`. 
 * **Multi-Tenant System:** Built for scale. A single OmniPay installation can power multiple "Stores," allowing you to act as a payment provider for your other businesses or clients.
 
@@ -82,13 +83,21 @@ OmniPay ships with **10 Production-Ready Drivers** out of the box.
 | **Bybit Pay** | Crypto Exchange | Bybit REST API Verification | ✅ Ready |
 | **Web3 (BSC, ETH, TRON, OP, ARB)** | Decentralized Blockchain | Block Explorer API (Etherscan, TronGrid, BscScan) | ✅ Ready |
 
+### 🔌 Supported Client Integrations & Modules
+We support native plugin integrations for the following popular billing, hosting, and SMM panel portals:
+* **WHMCS**: Process client checkouts and automate payment tracking inside WHMCS.
+* **Dhru Fusion**: Auto-verify deposits and credit user balances on IMEI, file unlocking, and telecom portals.
+* **Blesta**: Accept payments and manage client credit billing natively.
+* **WooCommerce**: Unified, branded payment checkouts for WordPress storefronts.
+* **SMM Panels**: Automatically top up user balances on popular SMM script services.
+
 ### 🛠️ Platform Capabilities
 
 * **Intelligent Auto-Verification System:** Employs a unique "fractional offset" algorithm. If an invoice is for $25.00, OmniPay asks for $25.000384 to perfectly match incoming SMS or crypto transactions to the exact invoice, solving the concurrency problem of multiple users paying the same amount at the same time.
 * **Multi-Store Architecture:** Merchants can create isolated stores. Each store has its own independent API key, Webhook callback URLs, and payment gateway configurations.
 * **Intelligent MFS Parser:** The built-in `MfsParser` service can understand complex SMS structures from 8 different mobile banking providers, extracting TrxIDs, sender numbers, and amounts automatically.
 * **Web Installer Wizard:** Zero-CLI setup. Just upload the files, navigate to `/install`, and the wizard handles database connections, migrations, and admin user creation.
-* **HMAC-SHA256 Webhooks:** Secure server-to-server callbacks ensure that your frontend/billing system (like WHMCS) only processes legitimate payment confirmations.
+* **HMAC-SHA256 Webhooks:** Secure server-to-server callbacks ensure that your frontend/billing system (like WHMCS, Dhru Fusion) only processes legitimate payment confirmations.
 * **Sandbox Mode:** Test transactions locally without real money.
 
 ## 📸 Screenshots & Platform Overview
@@ -595,6 +604,15 @@ OmniPay thrives on community contributions. Whether it's adding new blockchain n
 OmniPay is open-source software licensed under the [MIT License](LICENSE).
 
 This means you are absolutely free to rebrand, resell, modify, and distribute OmniPay in your commercial projects without restriction or attribution requirements.
+
+---
+
+## 📝 Changelog
+
+### [1.0.0] - 2026-06-22
+* **Dhru Fusion Integration Module**: Added a fully compliant payment gateway integration module for Dhru Fusion unlocking portals. Supports GET redirect state queries and POST HMAC webhook validations.
+* **Premium Minimalist Checkout**: Redesigned the checkout page with an ultra-clean, spacious layout, custom primary hover states, and dynamic store initial avatars.
+* **Responsiveness Fix**: Resolved dashboard QR-code layout wrapping bugs on mobile screens.
 
 <p align="center">
   <sub>Engineered for resilience. Built for freedom.</sub>
