@@ -904,6 +904,7 @@ class DashboardController extends Controller
             'theme_color' => 'nullable|string|max:20',
             'custom_css' => 'nullable|string|max:5000',
             'hide_branding' => 'nullable|boolean',
+            'checkout_layout' => 'nullable|string|in:left,right',
         ]);
 
         $store->update([
@@ -912,6 +913,7 @@ class DashboardController extends Controller
             'theme_color' => $request->theme_color,
             'custom_css' => $request->custom_css,
             'hide_branding' => $request->boolean('hide_branding', false),
+            'checkout_layout' => $request->checkout_layout ?? 'right',
         ]);
 
         ActivityLog::log('store_update', "Updated store details for '{$store->name}'", $store->id);

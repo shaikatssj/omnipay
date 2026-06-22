@@ -83,6 +83,15 @@
             <div class="help-text">Inject raw CSS into the checkout page header to heavily modify the appearance.</div>
         </div>
 
+        <div class="form-group">
+            <label for="checkout_layout">Checkout Layout Configuration</label>
+            <select name="checkout_layout" id="checkout_layout" class="form-control">
+                <option value="right" {{ old('checkout_layout', $store->checkout_layout) == 'right' ? 'selected' : '' }}>Payment Request on Left, Select Method on Right (Default)</option>
+                <option value="left" {{ old('checkout_layout', $store->checkout_layout) == 'left' ? 'selected' : '' }}>Select Method on Left, Payment Request on Right</option>
+            </select>
+            <div class="help-text">Choose the alignment for the checkout grid layout.</div>
+        </div>
+
         <div class="form-group" style="display: flex; align-items: center; gap: 10px;">
             <input type="hidden" name="hide_branding" value="0">
             <input type="checkbox" name="hide_branding" id="hide_branding" value="1" {{ old('hide_branding', $store->hide_branding) ? 'checked' : '' }} style="width: 18px; height: 18px;">

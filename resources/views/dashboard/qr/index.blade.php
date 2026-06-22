@@ -10,9 +10,14 @@
         gap: 30px;
     }
 
-    @media(max-width: 900px) {
+    @media(max-width: 1200px) {
         .qr-grid {
-            grid-template-columns: 1fr;
+            display: flex;
+            flex-direction: column-reverse;
+        }
+        .qr-grid > div {
+            width: 100%;
+            overflow: hidden;
         }
     }
 

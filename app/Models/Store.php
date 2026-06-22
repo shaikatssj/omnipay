@@ -15,6 +15,7 @@ class Store extends Model
         'theme_color',
         'custom_css',
         'hide_branding',
+        'checkout_layout',
     ];
 
     protected $casts = [

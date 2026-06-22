@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file.
 
+## [Unreleased] - 2026-06-22
+
+### Added
+- **Store White-Labeling (Checkout Layout)**:
+  - Added option to toggle the alignment of the checkout page layout (swapping "Select Payment Method" and "Payment Request" columns) from the store settings.
+  - Added `checkout_layout` column to the `stores` table via database migration.
+- **Refined Checkout Design**:
+  - Transitioned the checkout page to an ultra-clean, minimalist, Stripe-like aesthetic.
+  - Widened the checkout container to 1050px and increased internal padding for a more spacious, professional layout.
+
+### Fixed
+- **Dashboard QR-Codes**: Made the QR-codes dashboard page grid fully responsive.
+
 ## [Unreleased] - 2026-06-21
 
 ### Added
