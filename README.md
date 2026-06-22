@@ -613,6 +613,12 @@ This means you are absolutely free to rebrand, resell, modify, and distribute Om
 
 ## 📝 Changelog
 
+### [1.1.0] - 2026-06-22
+* **SMS Reader Sync App QR Overhaul**: Redesigned the SMS Sync App QR code card on the dashboard to be visually premium, featuring active pulse syncing states and a vertical laser scanning animation overlay.
+* **Canvas Center Logo Rendering**: Upgraded the QRious rendering logic to canvas-level `H` (30% error correction level) and dynamically injected the OmniPay favicon directly in the center of the QR code with a custom rounded white mask.
+* **Credentials Copy Actions**: Added inline clipboard copy helper elements with active success states for both Server URL and App Connection Key.
+* **Functional APK Download Link**: Copied `omnipay.apk` to public downloads and linked the dashboard download shortcut directly to the asset.
+
 ### [1.0.0] - 2026-06-22
 * **Dhru Fusion Integration Module**: Added a fully compliant payment gateway integration module for Dhru Fusion unlocking portals. Supports GET redirect state queries and POST HMAC webhook validations.
 * **Premium Minimalist Checkout**: Redesigned the checkout page with an ultra-clean, spacious layout, custom primary hover states, and dynamic store initial avatars.
