@@ -222,6 +222,191 @@
         text-transform: uppercase;
         vertical-align: middle;
     }
+
+    /* SMS Sync Card & QR styles */
+    .sync-card {
+        margin-bottom: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 16px;
+        height: 100%;
+        position: relative;
+    }
+
+    .sync-header {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 5px;
+    }
+
+    .sync-title {
+        font-size: 1.1rem;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .sync-title i {
+        color: var(--primary);
+    }
+
+    .sync-status {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 0.72rem;
+        font-weight: 600;
+        background: rgba(16, 185, 129, 0.08);
+        color: var(--success);
+        padding: 4px 10px;
+        border-radius: 20px;
+        border: 1px solid rgba(16, 185, 129, 0.15);
+    }
+
+    .sync-status-dot {
+        width: 6px;
+        height: 6px;
+        background-color: var(--success);
+        border-radius: 50%;
+        display: inline-block;
+        box-shadow: 0 0 8px var(--success);
+        animation: pulse-dot 1.5s infinite;
+    }
+
+    @keyframes pulse-dot {
+        0% { transform: scale(0.9); opacity: 0.6; }
+        50% { transform: scale(1.3); opacity: 1; box-shadow: 0 0 12px var(--success); }
+        100% { transform: scale(0.9); opacity: 0.6; }
+    }
+
+    .qr-container-wrapper {
+        position: relative;
+        padding: 16px;
+        background: #ffffff;
+        border-radius: 18px;
+        border: 1px solid var(--border);
+        box-shadow: var(--shadow);
+        transition: var(--transition);
+        display: inline-block;
+        cursor: pointer;
+        overflow: hidden;
+    }
+
+    .qr-container-wrapper:hover {
+        transform: translateY(-2px) scale(1.02);
+        border-color: var(--primary);
+        box-shadow: 0 8px 30px rgba(99, 102, 241, 0.12);
+    }
+
+    /* Laser Scanner Animation */
+    .qr-scanner-line {
+        position: absolute;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, rgba(99,102,241,0) 0%, rgba(99,102,241,0.8) 30%, rgba(99,102,241,0.8) 70%, rgba(99,102,241,0) 100%);
+        box-shadow: 0 0 12px rgba(99, 102, 241, 0.8);
+        animation: scanner-scan 3.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+        pointer-events: none;
+        z-index: 5;
+    }
+
+    @keyframes scanner-scan {
+        0% { top: 0%; opacity: 0; }
+        5% { opacity: 1; }
+        95% { opacity: 1; }
+        100% { top: 100%; opacity: 0; }
+    }
+
+    .manual-details-section {
+        width: 100%;
+        border-top: 1px dashed var(--border);
+        padding-top: 15px;
+        margin-top: 5px;
+        text-align: left;
+    }
+
+    .manual-title {
+        font-size: 0.8rem;
+        font-weight: 700;
+        color: var(--gray);
+        margin-bottom: 8px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .copy-detail-row {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        margin-bottom: 12px;
+    }
+
+    .copy-detail-label {
+        font-size: 0.72rem;
+        font-weight: 600;
+        color: var(--gray);
+    }
+
+    .copy-detail-field {
+        display: flex;
+        align-items: center;
+        background: rgba(0,0,0,0.02);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        overflow: hidden;
+        transition: var(--transition);
+    }
+
+    [data-theme="dark"] .copy-detail-field {
+        background: rgba(255,255,255,0.02);
+    }
+
+    .copy-detail-field:focus-within {
+        border-color: var(--primary);
+        box-shadow: 0 0 0 3px var(--primary-light);
+    }
+
+    .copy-detail-val {
+        flex-grow: 1;
+        font-size: 0.76rem;
+        font-family: monospace;
+        padding: 8px 10px;
+        color: var(--dark);
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        user-select: all;
+    }
+
+    .copy-detail-btn {
+        background: none;
+        border: none;
+        border-left: 1px solid var(--border);
+        padding: 8px 12px;
+        cursor: pointer;
+        color: var(--gray);
+        font-size: 0.8rem;
+        transition: var(--transition);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .copy-detail-btn:hover {
+        background: rgba(99, 102, 241, 0.05);
+        color: var(--primary);
+    }
+
+    .copy-detail-btn.copied {
+        color: var(--success);
+        background: rgba(16, 185, 129, 0.05);
+    }
 </style>
 @endsection
 
@@ -302,21 +487,50 @@
     </div>
 
     <!-- Android SMS Sync Connection -->
-    <div class="card" style="margin-bottom: 0; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 15px; height: 100%;">
-        <h2 style="font-size: 1.15rem; font-weight: 700; align-self: flex-start; margin-bottom: 5px;">SMS Reader Sync App</h2>
-        <div style="font-size: 0.85rem; color: var(--gray); align-self: flex-start; text-align: left; margin-bottom: 10px; line-height: 1.4;">
+    <div class="card sync-card">
+        <div class="sync-header">
+            <h2 class="sync-title">
+                <i class="fa-solid fa-square-rss"></i> SMS Reader Sync
+            </h2>
+            <div class="sync-status">
+                <span class="sync-status-dot"></span> Ready
+            </div>
+        </div>
+
+        <div style="font-size: 0.82rem; color: var(--gray); align-self: flex-start; text-align: left; margin-bottom: 5px; line-height: 1.45;">
             Scan this QR Code with your Android SMS Reader App to automatically connect and sync manual MFS payments.
         </div>
         
-        <div style="padding: 15px; background: white; border-radius: 12px; border: 1px solid var(--border); box-shadow: 0 4px 6px rgba(0,0,0,0.02); display: inline-block;">
-            <canvas id="connection-qr" style="width: 150px; height: 150px; display: block;"></canvas>
+        <div class="qr-container-wrapper">
+            <div class="qr-scanner-line"></div>
+            <canvas id="connection-qr" style="width: 160px; height: 160px; display: block;"></canvas>
         </div>
 
-        <div style="width: 100%; border-top: 1px dashed var(--border); padding-top: 15px; margin-top: 5px; text-align: left;">
-            <div style="font-size: 0.8rem; font-weight: 600; color: var(--gray); margin-bottom: 5px;">Manual Connection Details:</div>
-            <div style="font-size: 0.78rem; font-family: monospace; background: rgba(0,0,0,0.03); padding: 8px; border-radius: 6px; word-break: break-all; color: var(--dark);">
-                <strong>Server:</strong> {{ url('/') }}<br>
-                <strong>App Connection Key:</strong> {{ Auth::user()->sms_sync_key }}
+        <a href="{{ asset('downloads/omnipay.apk') }}" class="btn btn-secondary btn-sm" style="width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 0.8rem; margin-top: -5px; border-radius: 8px;" download>
+            <i class="fa-brands fa-android"></i> Download SMS Reader App
+        </a>
+
+        <div class="manual-details-section">
+            <div class="manual-title">Manual Connection Details</div>
+            
+            <div class="copy-detail-row">
+                <div class="copy-detail-label">Server URL</div>
+                <div class="copy-detail-field">
+                    <div class="copy-detail-val" id="server-url-text">{{ url('/') }}</div>
+                    <button class="copy-detail-btn" onclick="copyToClipboard('{{ url('/') }}', this)" title="Copy Server URL">
+                        <i class="fa-regular fa-copy"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="copy-detail-row">
+                <div class="copy-detail-label">App Connection Key</div>
+                <div class="copy-detail-field">
+                    <div class="copy-detail-val" id="connection-key-text">{{ Auth::user()->sms_sync_key }}</div>
+                    <button class="copy-detail-btn" onclick="copyToClipboard('{{ Auth::user()->sms_sync_key }}', this)" title="Copy Connection Key">
+                        <i class="fa-regular fa-copy"></i>
+                    </button>
+                </div>
             </div>
         </div>
     </div>
@@ -470,15 +684,78 @@
         // Initialize local QR code generation for SMS Sync App
         const connectionQrElement = document.getElementById('connection-qr');
         if (connectionQrElement) {
-            new QRious({
+            const qrVal = {!! json_encode(json_encode([
+                'server_url' => url('/'),
+                'api_key' => Auth::user()->sms_sync_key
+            ])) !!};
+
+            // Use QRious to generate the base QR code on the canvas
+            // We use size: 320 to make the QR resolution very sharp
+            // We use level: 'H' (high error correction, 30%) so the code remains fully scannable with a center logo
+            const qr = new QRious({
                 element: connectionQrElement,
-                value: {!! json_encode(json_encode([
-                    'server_url' => url('/'),
-                    'api_key' => Auth::user()->sms_sync_key
-                ])) !!},
-                size: 200
+                value: qrVal,
+                size: 320,
+                level: 'H',
+                foreground: '#0f172a' // Clean dark color for maximum scanning contrast
             });
+
+            // Once generated, overlay the OmniPay favicon in the center
+            const ctx = connectionQrElement.getContext('2d');
+            const logo = new Image();
+            logo.src = '{{ asset("favicon.png") }}';
+            logo.onload = function() {
+                const canvasSize = connectionQrElement.width; // Should be 320
+                const logoSize = 64; // Size of the center logo image (20% of canvasSize)
+                const x = (canvasSize - logoSize) / 2;
+                const y = (canvasSize - logoSize) / 2;
+
+                // 1. Draw a white rounded rectangle backing mask
+                ctx.fillStyle = '#ffffff';
+                ctx.beginPath();
+                const pad = 6; // Background padding
+                const rectX = x - pad;
+                const rectY = y - pad;
+                const rectW = logoSize + (pad * 2);
+                const rectH = logoSize + (pad * 2);
+                const radius = 12; // Rounded corners for premium feel
+
+                if (typeof ctx.roundRect === 'function') {
+                    ctx.roundRect(rectX, rectY, rectW, rectH, radius);
+                } else {
+                    // Fallback for older browsers
+                    ctx.rect(rectX, rectY, rectW, rectH);
+                }
+                ctx.fill();
+
+                // 2. Subtle inner border for the logo frame
+                ctx.strokeStyle = 'rgba(99, 102, 241, 0.15)';
+                ctx.lineWidth = 2;
+                ctx.stroke();
+
+                // 3. Draw the logo favicon in the center
+                ctx.drawImage(logo, x, y, logoSize, logoSize);
+            };
         }
+
+        // Copy Helper function
+        window.copyToClipboard = function(text, btn) {
+            navigator.clipboard.writeText(text).then(function() {
+                const icon = btn.querySelector('i');
+                const originalClass = icon.className;
+                
+                // Success Feedback
+                btn.classList.add('copied');
+                icon.className = 'fa-solid fa-check';
+                
+                setTimeout(function() {
+                    btn.classList.remove('copied');
+                    icon.className = originalClass;
+                }, 2000);
+            }).catch(function(err) {
+                console.error('Could not copy text: ', err);
+            });
+        };
 
         const ctx = document.getElementById('analyticsChart').getContext('2d');
         
