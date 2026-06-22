@@ -33,6 +33,10 @@
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-22c55e?style=for-the-badge" alt="MIT License"></a>
 </p>
 
+> [!IMPORTANT]
+> **🔌 DHRU FUSION INTEGRATION IS LIVE!**  
+> OmniPay now fully supports **Dhru Fusion** billing panels natively! You can now auto-verify Mobile Financial Services (MFS) and Crypto deposits on IMEI, telecom, and file unlocking portals. Download the official gateway module directly from the developer dashboard downloads page.
+
 <p align="center">
   <a href="#-the-omnipay-vision">The Vision</a> •
   <a href="#-core-features--gateways">Features</a> •
