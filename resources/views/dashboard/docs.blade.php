@@ -1083,6 +1083,19 @@ session(['simulated_binance_balance' => 110.000321]);</pre>
                 <div class="integration-card">
                     <h3>
                         <div class="icon-wrapper">
+                            <i class="fa-solid fa-server"></i>
+                        </div>
+                        Dhru Fusion Module
+                    </h3>
+                    <p>Integrate OmniPay payments into Dhru Fusion billing panels.</p>
+                    <a href="{{ asset('downloads/dhru-omnipay.zip') }}" class="btn btn-primary" style="margin-top:auto; width: 100%;">
+                        <i class="fa-solid fa-file-zipper"></i> Download Dhru Fusion
+                    </a>
+                </div>
+
+                <div class="integration-card">
+                    <h3>
+                        <div class="icon-wrapper">
                             <i class="fa-solid fa-file-invoice"></i>
                         </div>
                         Blesta Plugin
