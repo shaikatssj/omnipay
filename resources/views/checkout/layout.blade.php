@@ -22,7 +22,7 @@
             --warning: #f59e0b;
             --danger: #ef4444;
             --dark: #0f172a;
-            --light: #fcfcfd;
+            --light: #f8fafc;
             --gray: #64748b;
             --border-radius: 12px;
             --transition: all 0.2s ease-in-out;
@@ -182,11 +182,11 @@
             <style>
                 :root {
                     --primary: {{ $invoice->store->theme_color }};
-                    --primary-dark: {{ $invoice->store->theme_color }}; /* simplified for theme injection */
+                    --primary-dark: color-mix(in srgb, var(--primary) 85%, black);
                 }
                 [data-theme="dark"] {
                     --primary: {{ $invoice->store->theme_color }};
-                    --primary-dark: {{ $invoice->store->theme_color }};
+                    --primary-dark: color-mix(in srgb, var(--primary) 85%, white);
                 }
             </style>
         @endif

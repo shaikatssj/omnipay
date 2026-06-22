@@ -159,19 +159,28 @@
         text-overflow: ellipsis;
     }
     
+    .sidebar-bottom {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        margin-top: auto;
+    }
+
     .sidebar-timer {
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        gap: 12px;
-        background-color: rgba(239, 68, 68, 0.05);
-        border: 1px solid rgba(239, 68, 68, 0.2);
-        padding: 12px 24px;
-        border-radius: var(--border-radius);
+        gap: 8px;
+        background-color: color-mix(in srgb, var(--danger) 8%, var(--bg-surface));
+        border: 1px solid color-mix(in srgb, var(--danger) 15%, var(--bg-surface));
+        padding: 10px 18px;
+        border-radius: 30px;
         color: var(--danger);
         font-weight: 600;
-        font-size: 0.95rem;
-        width: 100%;
+        font-size: 0.88rem;
+        letter-spacing: 0.02em;
+        width: fit-content;
     }
     
     /* Right Side Main Content */
@@ -226,7 +235,7 @@
     .gateway-card.active {
         border-color: var(--primary);
         box-shadow: 0 0 0 1px var(--primary);
-        background-color: var(--primary-light);
+        background-color: color-mix(in srgb, var(--primary) 8%, var(--bg-surface));
     }
 
     .gateway-card.active::after {
@@ -241,7 +250,7 @@
     }
 
     [data-theme="dark"] .gateway-card.active {
-        background-color: rgba(99, 102, 241, 0.1);
+        background-color: color-mix(in srgb, var(--primary) 12%, var(--bg-surface));
     }
 
     .gateway-icon {
@@ -335,7 +344,7 @@
 
     .form-control:focus {
         border-color: var(--primary);
-        box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+        box-shadow: 0 0 0 3px color-mix(in srgb, var(--primary) 15%, transparent);
     }
 
     .copy-btn {
@@ -362,6 +371,7 @@
     .instructions-box {
         background-color: var(--light);
         border: 1px solid var(--border-color);
+        border-left: 4px solid var(--primary);
         padding: 20px;
         border-radius: var(--border-radius);
         font-size: 0.95rem;
@@ -583,9 +593,17 @@
     <!-- Left Column: Summary -->
     <div class="checkout-summary-sidebar">
         <div class="sidebar-top">
-            <div>
-                <span class="sidebar-store-title">Payment Request</span>
-                <h2 class="sidebar-store-name">{{ $invoice->store->name }}</h2>
+            <div class="sidebar-store-header" style="display: flex; align-items: center; gap: 16px; margin-bottom: 5px;">
+                <div class="store-avatar" style="width: 46px; height: 46px; border-radius: 10px; background: color-mix(in srgb, var(--primary) 10%, var(--bg-surface)); color: var(--primary); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.15rem; border: 1px solid color-mix(in srgb, var(--primary) 18%, var(--bg-surface)); flex-shrink: 0; box-shadow: var(--shadow-sm);">
+                    {{ strtoupper(substr($invoice->store->name, 0, 2)) }}
+                </div>
+                <div>
+                    <span class="sidebar-store-title" style="margin-bottom: 2px;">Payment Request</span>
+                    <h2 class="sidebar-store-name" style="margin-bottom: 0; font-size: 1.3rem;">{{ $invoice->store->name }}</h2>
+                </div>
+            </div>
+            
+            <div style="margin-top: 5px;">
                 <div class="sidebar-invoice-badge">Invoice: <code>{{ $invoice->invoice_id }}</code></div>
             </div>
             
@@ -648,7 +666,7 @@
                                 @elseif($cfg->paymentMethod->code === 'bybit')
                                     <i class="fa-solid fa-coins" style="color: #16b97d;"></i>
                                 @elseif($cfg->paymentMethod->code === 'web3')
-                                    <i class="fa-solid fa-wallet" style="color: #6366f1;"></i>
+                                    <i class="fa-solid fa-wallet" style="color: var(--primary);"></i>
                                 @endif
                             @endif
                         </div>
@@ -885,7 +903,7 @@
                 let color = code === 'binance' ? '#f0b90b' : '#16b97d';
                 title.html(`<i class="fa-solid fa-coins" style="color: ${color}"></i> <span>Pay with ${code.toUpperCase()}</span>`);
             } else if (code === 'web3') {
-                title.html(`<i class="fa-solid fa-wallet" style="color: #6366f1"></i> <span>Web3 Crypto Checkout</span>`);
+                title.html(`<i class="fa-solid fa-wallet" style="color: var(--primary)"></i> <span>Web3 Crypto Checkout</span>`);
             }
         }
 
