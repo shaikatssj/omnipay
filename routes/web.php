@@ -95,6 +95,10 @@ Route::middleware(['auth', \App\Http\Middleware\CheckMerchantSystem::class])->pr
         Route::post('/settings/toggle-merchant-system', [DashboardController::class, 'adminToggleMerchantSystem'])->name('admin.settings.toggle-merchant');
         Route::post('/settings/smtp', [DashboardController::class, 'adminSaveSmtpSettings'])->name('admin.settings.smtp');
         Route::post('/settings/toggle-captcha', [DashboardController::class, 'adminToggleCaptcha'])->name('admin.settings.toggle-captcha');
+        
+        // Auto-Updater
+        Route::get('/system/updater', [\App\Http\Controllers\UpdaterController::class, 'index'])->name('admin.updater');
+        Route::post('/system/updater/run', [\App\Http\Controllers\UpdaterController::class, 'run'])->name('admin.updater.run');
     });
 });
 

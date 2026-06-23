@@ -407,6 +407,11 @@
                         <i class="fa-solid fa-gears"></i> Core Gateways
                     </a>
                 </li>
+                <li class="menu-item @if(Route::is('admin.updater')) active @endif">
+                    <a href="{{ route('admin.updater') }}">
+                        <i class="fa-solid fa-cloud-arrow-down"></i> System Updater
+                    </a>
+                </li>
             @endif
         </ul>
 

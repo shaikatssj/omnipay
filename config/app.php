@@ -30,6 +30,29 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Application Version
+    |--------------------------------------------------------------------------
+    |
+    | This value determines the "version" your application is currently
+    | running on. Used for the updater engine.
+    |
+    */
+
+    'version' => env('APP_VERSION', '1.0.0'),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Update Server URL
+    |--------------------------------------------------------------------------
+    |
+    | The URL to check for updates.
+    |
+    */
+
+    'update_server_url' => env('UPDATE_SERVER_URL', 'https://update.xtransactia.com/api.php'),
+
+    /*
+    |--------------------------------------------------------------------------
     | Application Debug Mode
     |--------------------------------------------------------------------------
     |
