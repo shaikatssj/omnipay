@@ -95,6 +95,13 @@
             flex-direction: column;
             gap: 8px;
             flex-grow: 1;
+            overflow-y: auto;
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+        
+        .menu-list::-webkit-scrollbar {
+            display: none;
         }
 
         .menu-item a {
