@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.5.2] - 2026-06-25
+
+### Fixed
+- Fixed an issue where email templates were not automatically seeded when upgrading via the UI Updater.
+
 ## [1.5.1] - 2026-06-25
 
 ### Added
