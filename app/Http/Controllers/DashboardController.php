@@ -62,7 +62,10 @@ class DashboardController extends Controller
                 ->get()
                 ->keyBy('date');
         } else {
-            $storeIds = Store::where('user_id', $user->id)->pluck('id');
+            $ownedStoreIds = Store::where('user_id', $user->id)->pluck('id');
+            $staffStoreIds = $user->staffStores()->pluck('stores.id');
+            $storeIds = $ownedStoreIds->merge($staffStoreIds)->unique();
+            
             $storesCount = $storeIds->count();
             $invoicesCount = Invoice::whereIn('store_id', $storeIds)->count();
             $paidInvoices = Invoice::whereIn('store_id', $storeIds)->where('status', 'paid')->get();
@@ -166,6 +169,54 @@ class DashboardController extends Controller
         ActivityLog::log('store_create', "Created store '{$store->name}'", $store->id);
 
         return redirect()->route('dashboard')->with('success', 'Store created successfully.');
+    }
+
+    /**
+     * Show staff for a store.
+     */
+    public function staffIndex(Store $store)
+    {
+        $staff = $store->staff()->get();
+        return view('dashboard.stores.staff', compact('store', 'staff'));
+    }
+
+    /**
+     * Add staff to a store.
+     */
+    public function staffAdd(Request $request, Store $store)
+    {
+        $request->validate([
+            'email' => 'required|email|exists:users,email',
+            'role' => 'required|in:manager,cashier,accountant',
+        ]);
+
+        $userToAdd = \App\Models\User::where('email', $request->email)->first();
+
+        if ($store->user_id === $userToAdd->id) {
+            return redirect()->back()->with('error', 'Cannot add the store owner as staff.');
+        }
+
+        if ($store->staff()->where('user_id', $userToAdd->id)->exists()) {
+            return redirect()->back()->with('error', 'User is already staff in this store.');
+        }
+
+        $store->staff()->attach($userToAdd->id, ['role' => $request->role]);
+
+        ActivityLog::log('staff_add', "Added user {$userToAdd->email} as {$request->role}", $store->id);
+
+        return redirect()->back()->with('success', 'Staff member added successfully.');
+    }
+
+    /**
+     * Remove staff from a store.
+     */
+    public function staffRemove(Store $store, \App\Models\User $user)
+    {
+        $store->staff()->detach($user->id);
+
+        ActivityLog::log('staff_remove', "Removed user {$user->email} from staff", $store->id);
+
+        return redirect()->back()->with('success', 'Staff member removed successfully.');
     }
 
 
@@ -377,14 +428,18 @@ class DashboardController extends Controller
         $query = Invoice::with(['store', 'paymentMethod']);
 
         if ($user->role !== 'admin') {
-            $storeIds = Store::where('user_id', $user->id)->pluck('id');
+            $ownedStoreIds = Store::where('user_id', $user->id)->pluck('id');
+            $staffStoreIds = $user->staffStores()->pluck('stores.id');
+            $storeIds = $ownedStoreIds->merge($staffStoreIds)->unique();
             $query->whereIn('store_id', $storeIds);
         }
 
         // Calculate summary counts
         $statsQuery = Invoice::query();
         if ($user->role !== 'admin') {
-            $storeIds = Store::where('user_id', $user->id)->pluck('id');
+            $ownedStoreIds = Store::where('user_id', $user->id)->pluck('id');
+            $staffStoreIds = $user->staffStores()->pluck('stores.id');
+            $storeIds = $ownedStoreIds->merge($staffStoreIds)->unique();
             $statsQuery->whereIn('store_id', $storeIds);
         }
         $statusCounts = $statsQuery->selectRaw('status, count(*) as count')
@@ -595,7 +650,10 @@ class DashboardController extends Controller
         if ($user->role === 'admin') {
             $stores = Store::where('is_active', true)->get();
         } else {
-            $stores = Store::where('user_id', $user->id)->where('is_active', true)->get();
+            $ownedStoreIds = Store::where('user_id', $user->id)->pluck('id');
+            $staffStoreIds = $user->staffStores()->pluck('stores.id');
+            $storeIds = $ownedStoreIds->merge($staffStoreIds)->unique();
+            $stores = Store::whereIn('id', $storeIds)->where('is_active', true)->get();
         }
 
         return view('dashboard.invoices.create', ['stores' => $stores]);

@@ -269,6 +269,9 @@
             <button type="button" id="btnBulkDelete" class="btn btn-danger" style="padding: 10px 20px; font-size: 0.88rem; display: none; align-items: center; gap: 8px; border: none; cursor: pointer; background-color: var(--danger); color: white; border-radius: 8px;">
                 <i class="fa-solid fa-trash-can"></i> Delete Selected
             </button>
+            <a href="{{ route('dashboard.analytics.export') }}" class="btn btn-secondary" style="padding: 10px 20px; font-size: 0.88rem; display: inline-flex; align-items: center; gap: 8px;">
+                <i class="fa-solid fa-file-csv"></i> Export
+            </a>
             <a href="{{ route('dashboard.invoices.create') }}" class="btn btn-primary" style="padding: 10px 20px; font-size: 0.88rem; display: inline-flex; align-items: center; gap: 8px;">
                 <i class="fa-solid fa-plus"></i> Create Invoice
             </a>

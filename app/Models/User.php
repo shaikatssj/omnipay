@@ -40,6 +40,11 @@ class User extends Authenticatable
         return $this->hasMany(Store::class);
     }
 
+    public function staffStores()
+    {
+        return $this->belongsToMany(Store::class, 'store_user')->withPivot('role')->withTimestamps();
+    }
+
     public function syncedTransactions()
     {
         return $this->hasMany(SyncedTransaction::class);

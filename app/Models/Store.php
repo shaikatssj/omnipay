@@ -27,6 +27,11 @@ class Store extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function staff()
+    {
+        return $this->belongsToMany(User::class, 'store_user')->withPivot('role')->withTimestamps();
+    }
+
     public function configs()
     {
         return $this->hasMany(StorePaymentConfig::class);

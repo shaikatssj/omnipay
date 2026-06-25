@@ -22,6 +22,9 @@ return Application::configure(basePath: dirname(__DIR__))
             'checkout/redirect',
             'verify-payment',
         ]);
+        $middleware->alias([
+            'storeRole' => \App\Http\Middleware\CheckStoreRole::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //

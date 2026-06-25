@@ -21,11 +21,11 @@
         background: var(--card-bg);
         border: 1px solid var(--border);
         border-radius: var(--border-radius);
-        padding: 22px;
+        padding: 24px;
         display: flex;
         align-items: center;
         gap: 20px;
-        box-shadow: var(--shadow);
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
         transition: var(--transition);
         position: relative;
         overflow: hidden;
@@ -46,6 +46,7 @@
     .stat-card-premium:hover {
         transform: translateY(-2px);
         border-color: var(--primary);
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.025);
     }
 
     .stat-icon-wrapper {
@@ -74,7 +75,7 @@
     }
 
     .stat-details h4 {
-        font-size: 0.78rem;
+        font-size: 0.8rem;
         font-weight: 700;
         text-transform: uppercase;
         letter-spacing: 0.5px;
@@ -83,7 +84,7 @@
     }
 
     .stat-details .value {
-        font-size: 1.45rem;
+        font-size: 1.5rem;
         font-weight: 800;
         color: var(--dark);
     }
@@ -113,20 +114,20 @@
     /* Cards Grid */
     .stores-cards-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-        gap: 25px;
+        grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+        gap: 30px;
     }
 
     .store-card {
         background: var(--card-bg);
         border: 1px solid var(--border);
         border-radius: var(--border-radius);
-        padding: 25px;
+        padding: 30px;
         box-shadow: var(--shadow);
         transition: var(--transition);
         display: flex;
         flex-direction: column;
-        gap: 20px;
+        gap: 24px;
         position: relative;
     }
 
@@ -284,6 +285,7 @@
     .store-card-footer {
         display: flex;
         align-items: center;
+        flex-wrap: wrap;
         gap: 8px;
         margin-top: 5px;
     }
@@ -429,7 +431,7 @@
             </div>
             <div class="stat-details">
                 <h4>Access Mode</h4>
-                <div class="value" style="font-size: 0.95rem; font-weight: 700; margin-top: 5px;">
+                <div class="value" style="font-size: 1.25rem;">
                     {{ \App\Models\Setting::get('merchant_system_enabled', '1') === '1' ? 'Multi-Merchant' : 'Admin-Only' }}
                 </div>
             </div>
@@ -510,6 +512,10 @@
                 <div class="store-card-footer">
                     <a href="{{ route('stores.configs.edit', ['store' => $st->id]) }}" class="action-btn-pill action-btn-primary-pill" title="Configure Gateways">
                         <i class="fa-solid fa-gears"></i> Gateways
+                    </a>
+                    
+                    <a href="{{ route('stores.staff.index', ['store' => $st->id]) }}" class="action-btn-pill action-btn-secondary-pill" title="Manage Staff">
+                        <i class="fa-solid fa-users"></i> Staff
                     </a>
                     
                     <a href="{{ route('stores.edit', ['store' => $st->id]) }}" class="action-btn-pill action-btn-secondary-pill" title="Edit Store Details">

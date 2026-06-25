@@ -18,9 +18,12 @@ class PaymentLinkController extends Controller
             $paymentLinks = PaymentLink::with('store')->latest()->paginate(50);
             $stores = Store::where('is_active', true)->get();
         } else {
-            $storeIds = Store::where('user_id', $user->id)->pluck('id');
+            $ownedStoreIds = Store::where('user_id', $user->id)->pluck('id');
+            $staffStoreIds = $user->staffStores()->pluck('stores.id');
+            $storeIds = $ownedStoreIds->merge($staffStoreIds)->unique();
+            
             $paymentLinks = PaymentLink::whereIn('store_id', $storeIds)->with('store')->latest()->paginate(50);
-            $stores = Store::where('user_id', $user->id)->where('is_active', true)->get();
+            $stores = Store::whereIn('id', $storeIds)->where('is_active', true)->get();
         }
 
         return view('dashboard.payment-links.index', compact('paymentLinks', 'stores'));
@@ -37,8 +40,13 @@ class PaymentLinkController extends Controller
         ]);
 
         $store = Store::findOrFail($request->store_id);
-        if (Auth::user()->role !== 'admin' && $store->user_id !== Auth::id()) {
-            abort(403);
+        
+        $user = Auth::user();
+        if ($user->role !== 'admin' && $store->user_id !== $user->id) {
+            $staffUser = $store->staff()->where('user_id', $user->id)->first();
+            if (!$staffUser || $staffUser->pivot->role !== 'manager') {
+                abort(403);
+            }
         }
 
         $identifier = Str::slug($request->name) . '-' . Str::random(6);
@@ -63,8 +71,12 @@ class PaymentLinkController extends Controller
 
     public function destroy(PaymentLink $paymentLink)
     {
-        if (Auth::user()->role !== 'admin' && $paymentLink->store->user_id !== Auth::id()) {
-            abort(403);
+        $user = Auth::user();
+        if ($user->role !== 'admin' && $paymentLink->store->user_id !== $user->id) {
+            $staffUser = $paymentLink->store->staff()->where('user_id', $user->id)->first();
+            if (!$staffUser || $staffUser->pivot->role !== 'manager') {
+                abort(403);
+            }
         }
 
         ActivityLog::log('payment_link_delete', "Deleted payment link '{$paymentLink->name}'", $paymentLink->store_id);

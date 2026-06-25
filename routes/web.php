@@ -50,9 +50,18 @@ Route::middleware(['auth', \App\Http\Middleware\CheckMerchantSystem::class])->pr
     Route::get('/stores/{store}/edit', [DashboardController::class, 'editStore'])->name('stores.edit');
     Route::put('/stores/{store}', [DashboardController::class, 'updateStore'])->name('stores.update');
     Route::post('/stores/{store}/toggle-status', [DashboardController::class, 'toggleStoreStatus'])->name('stores.toggle-status');
-    Route::post('/stores/{store}/regenerate-key', [DashboardController::class, 'regenerateStoreKey'])->name('stores.regenerate-key');
-    Route::delete('/stores/{store}', [DashboardController::class, 'deleteStore'])->name('stores.delete');
+    Route::post('/stores/{store}/regenerate-key', [DashboardController::class, 'regenerateStoreKey'])->name('stores.regenerate-key')->middleware('storeRole:manager');
+    Route::delete('/stores/{store}', [DashboardController::class, 'deleteStore'])->name('stores.delete')->middleware('storeRole:manager');
     
+    // Store Staff Management
+    Route::get('/stores/{store}/staff', [DashboardController::class, 'staffIndex'])->name('stores.staff.index')->middleware('storeRole');
+    Route::post('/stores/{store}/staff', [DashboardController::class, 'staffAdd'])->name('stores.staff.add')->middleware('storeRole:manager');
+    Route::delete('/stores/{store}/staff/{user}', [DashboardController::class, 'staffRemove'])->name('stores.staff.remove')->middleware('storeRole:manager');
+    
+    // Analytics
+    Route::get('/analytics', [\App\Http\Controllers\AnalyticsController::class, 'index'])->name('dashboard.analytics');
+    Route::get('/analytics/export', [\App\Http\Controllers\AnalyticsController::class, 'exportCsv'])->name('dashboard.analytics.export');
+
     // Payment Links
     Route::resource('payment-links', PaymentLinkController::class)->except(['show', 'edit', 'update']);
     

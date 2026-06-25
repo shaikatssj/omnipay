@@ -17,6 +17,9 @@ use App\Plugins\RocketDriver;
 use App\Plugins\CellfinDriver;
 use App\Plugins\OkWalletDriver;
 use App\Plugins\TapDriver;
+use App\Plugins\StripeDriver;
+use App\Plugins\PayPalDriver;
+use App\Plugins\RazorpayDriver;
 
 use Illuminate\Support\Facades\Gate;
 
@@ -39,6 +42,9 @@ class AppServiceProvider extends ServiceProvider
             $manager->registerDriver(new CellfinDriver());
             $manager->registerDriver(new OkWalletDriver());
             $manager->registerDriver(new TapDriver());
+            $manager->registerDriver(new StripeDriver());
+            $manager->registerDriver(new PayPalDriver());
+            $manager->registerDriver(new RazorpayDriver());
             return $manager;
         });
     }

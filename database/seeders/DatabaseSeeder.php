@@ -35,6 +35,9 @@ class DatabaseSeeder extends Seeder
             ['name' => 'CellFin (MFS)', 'code' => 'cellfin'],
             ['name' => 'OK Wallet (MFS)', 'code' => 'okwallet'],
             ['name' => 'Tap (MFS)', 'code' => 'tap'],
+            ['name' => 'Stripe', 'code' => 'stripe'],
+            ['name' => 'PayPal', 'code' => 'paypal'],
+            ['name' => 'Razorpay', 'code' => 'razorpay'],
         ];
 
         foreach ($methods as $m) {

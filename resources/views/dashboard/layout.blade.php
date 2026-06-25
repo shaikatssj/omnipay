@@ -117,6 +117,12 @@
             transition: var(--transition);
         }
 
+        .menu-item a i {
+            width: 24px;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+
         .menu-item.active a, .menu-item a:hover {
             background-color: var(--primary-light);
             color: var(--primary);
@@ -375,6 +381,11 @@
             <li class="menu-item @if(Route::is('dashboard.invoices')) active @endif">
                 <a href="{{ route('dashboard.invoices') }}">
                     <i class="fa-solid fa-receipt"></i> Invoices
+                </a>
+            </li>
+            <li class="menu-item @if(Route::is('dashboard.analytics*')) active @endif">
+                <a href="{{ route('dashboard.analytics') }}">
+                    <i class="fa-solid fa-chart-pie"></i> Analytics & Reports
                 </a>
             </li>
             <li class="menu-item @if(Route::is('payment-links.*')) active @endif">
