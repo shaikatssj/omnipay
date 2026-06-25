@@ -108,6 +108,9 @@ Route::middleware(['auth', \App\Http\Middleware\CheckMerchantSystem::class])->pr
         // Auto-Updater
         Route::get('/system/updater', [\App\Http\Controllers\UpdaterController::class, 'index'])->name('admin.updater');
         Route::post('/system/updater/run', [\App\Http\Controllers\UpdaterController::class, 'run'])->name('admin.updater.run');
+
+        // Email Templates
+        Route::resource('email-templates', \App\Http\Controllers\EmailTemplateController::class)->except(['create', 'store', 'show', 'destroy']);
     });
 });
 

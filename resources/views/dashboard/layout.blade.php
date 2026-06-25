@@ -425,6 +425,11 @@
                         <i class="fa-solid fa-gears"></i> Core Gateways
                     </a>
                 </li>
+                <li class="menu-item @if(Route::is('email-templates.*')) active @endif">
+                    <a href="{{ route('email-templates.index') }}">
+                        <i class="fa-solid fa-envelope-open-text"></i> Email Templates
+                    </a>
+                </li>
                 <li class="menu-item @if(Route::is('admin.updater')) active @endif">
                     <a href="{{ route('admin.updater') }}">
                         <i class="fa-solid fa-cloud-arrow-down"></i> System Updater

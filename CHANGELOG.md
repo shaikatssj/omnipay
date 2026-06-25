@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.5.1] - 2026-06-25
+
+### Added
+- **Editable Email Templates**: Admins can now view and edit all system email templates (Invoice Created, Invoice Paid, Login Notifications, 2FA, etc.) directly from the dashboard UI.
+- Included dynamic variables for email subjects and bodies.
+- Refactored local MFS gateways to use database-driven email templates for manual verification notifications.
+
 ## [1.5.0] - 2026-06-25
 
 ### Added

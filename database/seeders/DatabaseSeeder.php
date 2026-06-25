@@ -15,6 +15,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        $this->call([
+            GatewaySeeder::class,
+            EmailTemplateSeeder::class,
+        ]);
+
         // 1. Seed Users
         $admin = User::create([
             'name' => 'Admin User',

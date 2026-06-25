@@ -172,27 +172,7 @@ class NagadDriver implements PaymentDriverInterface
                 $invoice->update(['meta_data' => $meta]);
 
                 // Send email alert to merchant user
-                $merchantEmail = $invoice->store->user->email;
-                try {
-                    Mail::send([], [], function ($message) use ($merchantEmail, $invoice, $trx_id, $totalBDT, $receivedBDT) {
-                        $message->to($merchantEmail)
-                            ->subject("Nagad Verification Pending - Invoice #{$invoice->invoice_id}")
-                            ->html("
-                                <h3>Nagad Verification Waiting</h3>
-                                <p>Hello,</p>
-                                <p>A customer submitted a Nagad Transaction ID for manual verification. It has not yet been synced by the transaction reader app.</p>
-                                <ul>
-                                    <li><b>Invoice ID:</b> #{$invoice->invoice_id}</li>
-                                    <li><b>Submitted Transaction ID:</b> {$trx_id}</li>
-                                    <li><b>Expected Total:</b> {$totalBDT} BDT</li>
-                                    <li><b>Received So Far:</b> {$receivedBDT} BDT</li>
-                                </ul>
-                                <p>Please verify this transaction manually in your dashboard once you receive the SMS.</p>
-                            ");
-                    });
-                } catch (\Exception $e) {
-                    Log::error("Failed to send manual verification email: " . $e->getMessage());
-                }
+                \App\Services\MailNotificationService::sendManualVerificationWaiting($invoice, 'Nagad', $trx_id, $totalBDT, $receivedBDT);
             }
 
             return [
