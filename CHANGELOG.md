@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.5.3] - 2026-06-25
+
+### Fixed
+- Vastly improved the UI design of the Email Templates management pages to match the premium dashboard layout.
+
 ## [1.5.2] - 2026-06-25
 
 ### Fixed
