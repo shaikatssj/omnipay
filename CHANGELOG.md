@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.5.0] - 2026-06-25
+
+### Added
+- **Role-Based Access Control (RBAC) & Staff Management**: Added `store_user` pivot table and UI to allow store owners to invite staff (Managers, Cashiers, Accountants).
+- **Advanced Analytics & Reporting**: Implemented a new dashboard featuring total volume, transaction counts, success rates, interactive revenue charts (Chart.js), and CSV export capabilities.
+- **Official Developer SDKs**: Created the `omnipay-php` package, a Guzzle-based PHP wrapper to easily integrate with the OmniPay API.
+- **Global Gateways Integration**: Added robust built-in support for Stripe, PayPal, and Razorpay payment drivers.
+
+### Changed
+- **UI Enhancements**: 
+  - Modernized the Staff Management page with a sleek, blurred backdrop modal.
+  - Fixed navigation sidebar icon alignments.
+  - Polished the Manage Stores dashboard UI (wider cards, better flex wrapping for actions, refined typography).
+
 ## [1.0.0] - 2026-06-22
 
 ### Added
